@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <PreferenceCategory android:title="Lock screen settings">
+
+                <CheckBoxPreference android:title="Change lock screen overlay opacity"
+                                    android:defaultValue="true"
+                                    android:key="pref_set_opacity"
+                                    android:order="1" />
+
+                <com.ceco.lollipop.gravitybox.preference.SeekBarPreference
+                                   android:title="Lock screen overlay opacity value"
+                                   android:key="pref_set_opacity_value"
+                                   android:summary="0% opacity = overlay invisible. Reboot required."
+                                   minimum="0"
+                                   maximum="100"
+                                   interval="1"
+                                   monitorBoxEnabled="true"
+                                   monitorBoxUnit="%"
+                                   android:defaultValue="0"
+                                   android:dependency="pref_set_opacity"
+                                   android:order="2" />
+
+                <net.margaritov.preference.colorpicker.ColorPickerPreference
+                                   android:title="Clock and date text colour"
+                                   android:key="pref_clock_date_colour"
+                                   android:summary="System default is white. Reboot required."
+                                   android:defaultValue="0xffffffff"
+                                   alphaSlider="true"
+                                   android:order="3" />
+        </PreferenceCategory>
+
+        <PreferenceCategory android:title="Security screen settings">
+
+                <com.generalbrus.brightlockscreen.LongTitleCheckBoxPreference
+                                    android:title="Disable security screen overlay"
+                                    android:key="pref_set_security_opacity"
+                                    android:summary="Overlay behind security method (pattern/PIN/...) when unlocking. Reboot required."
+                                    android:defaultValue="false"
+                                    android:order="4" />
+                <!--security screen opacity selector, TO DO - seems hard to manage
+                <com.ceco.lollipop.gravitybox.preference.SeekBarPreference
+                                    android:key="pref_set_security_opacity_value"
+                                    android:title="Security screen overlay opacity value"
+                                    android:summary="Reboot required."
+                                    minimum="0"
+                                    maximum="100"
+                                    interval="1"
+                                    monitorBoxEnabled="true"
+                                    monitorBoxUnit="%"
+                                    android:defaultValue="0"
+                                    android:dependency="pref_set_security_opacity"
+                                    android:order="5" />
+                -->
+
+        </PreferenceCategory>
+
+</PreferenceScreen>
