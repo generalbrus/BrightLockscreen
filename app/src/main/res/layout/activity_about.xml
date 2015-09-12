@@ -1,3 +1,4 @@
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
@@ -14,5 +15,11 @@
         android:lineSpacingMultiplier="1.2"
         android:id="@+id/about_content"
         android:linksClickable="true"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/coffee"
+        android:layout_below="@id/about_content" />
 
 </RelativeLayout>
