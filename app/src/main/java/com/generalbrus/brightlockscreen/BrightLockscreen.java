@@ -22,6 +22,7 @@ import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.IXposedHookZygoteInit;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
+import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
@@ -37,6 +38,7 @@ public class BrightLockscreen implements IXposedHookZygoteInit, IXposedHookLoadP
     public void initZygote(StartupParam startupParam) throws Throwable {
         prefs = new XSharedPreferences(BrightLockscreen.class.getPackage().getName());
         MODULE_PATH = startupParam.modulePath;
+        XposedBridge.log("BrightLockscreen [Initialized]");
     }
 
     public void handleLoadPackage(final XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
@@ -65,7 +67,8 @@ public class BrightLockscreen implements IXposedHookZygoteInit, IXposedHookLoadP
         if(prefs.getBoolean("pref_set_security_opacity", false)) {
             /*int securityOpacity = prefs.getInt("pref_set_security_opacity_value", 0);
              *securityOverlayAlpha = securityOpacity / 100f;
-             *Work in progess*/
+             *TO DO (?) - may cause problems if set to 100% (security input invisible)*/
+
             securityOverlayAlpha = 0;
             findAndHookMethod("com.android.systemui.statusbar.phone.ScrimController", lpparam.classLoader, "setScrimInFrontColor", float.class, new XC_MethodHook() {
                 @Override
@@ -85,10 +88,10 @@ public class BrightLockscreen implements IXposedHookZygoteInit, IXposedHookLoadP
             return;
 
         prefs.reload();
-
         //Replace text colour
         XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, resparam.res);
         resparam.res.setReplacement("com.android.systemui", "color", "clock_white", prefs.getInt("pref_clock_date_colour", 0xffffffff));
+
     }
 
 
