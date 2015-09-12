@@ -92,6 +92,7 @@ public class BrightLockscreen implements IXposedHookZygoteInit, IXposedHookLoadP
         XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, resparam.res);
         resparam.res.setReplacement("com.android.systemui", "color", "clock_white", prefs.getInt("pref_clock_date_colour", 0xffffffff));
 
+
     }
 
 
