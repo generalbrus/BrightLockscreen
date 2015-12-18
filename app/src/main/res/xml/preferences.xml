@@ -39,7 +39,6 @@
                                     android:defaultValue="false"
                                     android:order="4" />
 
-                <!--security screen opacity selector, TO DO (?) - may cause problems if set to 100% (security input invisible)
                 <com.ceco.lollipop.gravitybox.preference.SeekBarPreference
                                     android:key="pref_set_security_opacity_value"
                                     android:title="Security screen overlay opacity value"
@@ -52,7 +51,7 @@
                                     android:defaultValue="0"
                                     android:dependency="pref_set_security_opacity"
                                     android:order="5" />
-                -->
+
 
         </PreferenceCategory>
 

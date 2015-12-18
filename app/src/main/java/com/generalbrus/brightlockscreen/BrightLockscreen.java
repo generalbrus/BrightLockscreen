@@ -51,33 +51,50 @@ public class BrightLockscreen implements IXposedHookZygoteInit, IXposedHookLoadP
         //Lock Screen Overlay
         if(prefs.getBoolean("pref_set_opacity", true)) {
             int opacity = prefs.getInt("pref_set_opacity_value", 0);
-            overlayAlpha = opacity / 100f; //alpha value between 0 (invisible) and 1 (fully visible)
+            overlayAlpha = opacity / 100f; //Alpha value between 0 (invisible) and 1 (fully visible
 
             findAndHookMethod("com.android.systemui.statusbar.phone.ScrimController", lpparam.classLoader, "setScrimBehindColor", float.class, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                     boolean mKeyguardShowing  = getBooleanField(param.thisObject,"mKeyguardShowing");
                     if(mKeyguardShowing)
-                       param.args[0] = overlayAlpha; //scrim alpha value
+                       param.args[0] = overlayAlpha;
+
                 }
             });
         }
 
-        //Security Screen overlay
+        // Security Screen overlay
         if(prefs.getBoolean("pref_set_security_opacity", false)) {
-            /*int securityOpacity = prefs.getInt("pref_set_security_opacity_value", 0);
-             *securityOverlayAlpha = securityOpacity / 100f;
-             *TO DO (?) - may cause problems if set to 100% (security input invisible)*/
+            int securityOpacity = prefs.getInt("pref_set_security_opacity_value", 0);
+            securityOverlayAlpha = securityOpacity / 100f;
 
-            securityOverlayAlpha = 0;
             findAndHookMethod("com.android.systemui.statusbar.phone.ScrimController", lpparam.classLoader, "setScrimInFrontColor", float.class, new XC_MethodHook() {
                 @Override
                 protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    boolean mKeyguardShowing  = getBooleanField(param.thisObject,"mKeyguardShowing");
-                    if(mKeyguardShowing)
+                    boolean mBouncerShowing  = getBooleanField(param.thisObject,"mBouncerShowing");
+                    boolean mDarkenWhileDragging  = getBooleanField(param.thisObject,"mDarkenWhileDragging");
+                    boolean mExpanding  = getBooleanField(param.thisObject,"mExpanding");
+
+                    if(mBouncerShowing && !(mExpanding && mDarkenWhileDragging))
                         param.args[0] = securityOverlayAlpha;
                 }
+
+               /* @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    View mScrimInFront  = (View) XposedHelpers.getObjectField(param.thisObject, "mScrimInFront");
+                    boolean mDozing  = getBooleanField(param.thisObject,"mDozing");
+
+                    if (securityOverlayAlpha != 1f) {
+                        mScrimInFront.setClickable(false);
+                    } else {
+                        // Eat touch events (unless dozing).
+                        mScrimInFront.setClickable(!mDozing);
+                    }
+                }*/
             });
+
+
         }
     }
 
@@ -94,6 +111,5 @@ public class BrightLockscreen implements IXposedHookZygoteInit, IXposedHookLoadP
 
 
     }
-
 
 }
