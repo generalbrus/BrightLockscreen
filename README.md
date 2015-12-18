@@ -1,5 +1,7 @@
 #BrightLockscreen
 [Xposed Framework](http://repo.xposed.info) module that removes the dark overlay on Android Lollipop & Marshmallow* lock screen wallpaper.
+**Download BrightLockscreen from the [Xposed Module Library.](http://repo.xposed.info/module/com.generalbrus.brightlockscreen)**
+
 
 ![BrightLockscreen Preview](http://i.imgur.com/KsVK6hR.png)
 > Lockscreen with and without the module. 
