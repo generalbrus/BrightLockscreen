@@ -9,8 +9,8 @@ android {
         applicationId "com.generalbrus.brightlockscreen"
         minSdkVersion 21
         targetSdkVersion 21
-        versionName '2.2'
-        versionCode 202
+        versionName '2.3'
+        versionCode 203
     }
     buildTypes {
         release {

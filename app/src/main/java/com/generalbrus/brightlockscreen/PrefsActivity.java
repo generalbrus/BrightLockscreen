@@ -1,6 +1,8 @@
 package com.generalbrus.brightlockscreen;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
@@ -24,7 +26,16 @@ public class PrefsActivity extends PreferenceActivity {
             getPreferenceManager().setSharedPreferencesMode(MODE_WORLD_READABLE);
             addPreferencesFromResource(R.xml.preferences);
         }
+
+        @Override
+        public void onStart() {
+            super.onStart();
+            getActivity().getPackageManager().setComponentEnabledSetting(
+                    new ComponentName(getActivity(), "com.generalbrus.brightlockscreen.PrefsAlias"),
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+        }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
