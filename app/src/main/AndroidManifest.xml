@@ -16,6 +16,10 @@
             android:value="66" />
 
         <meta-data
+            android:name="xposedmaxversion"
+            android:value="80" />
+
+        <meta-data
             android:name="xposeddescription"
             android:value="Removes the dark overlay on Lollipop lock screen wallpaper." />
 
