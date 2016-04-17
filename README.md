@@ -3,7 +3,7 @@
 **Download BrightLockscreen from the [Xposed Module Library.](http://repo.xposed.info/module/com.generalbrus.brightlockscreen)**
 
 
-![BrightLockscreen Preview](http://i.imgur.com/KsVK6hR.png)
+![BrightLockscreen Preview](https://github.com/Generalbrus/BrightLockscreen/blob/master/screenshots/preview.png?raw=true)
 > Lockscreen with and without the module. 
 
 (*) The module has been tested only on CM12.1 (based on Lollipop 5.1.1), but it should also work on vanilla Android 5.0/1 and CM12. It has been reported to work on Marshmallow and CM13.
