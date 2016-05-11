@@ -15,9 +15,6 @@
             android:name="xposedminversion"
             android:value="66" />
 
-        <meta-data
-            android:name="xposedmaxversion"
-            android:value="80" />
 
         <meta-data
             android:name="xposeddescription"

@@ -1,1 +1,1 @@
-include ':app', ':XposedBridgeApi-20150213'
+include ':app'
